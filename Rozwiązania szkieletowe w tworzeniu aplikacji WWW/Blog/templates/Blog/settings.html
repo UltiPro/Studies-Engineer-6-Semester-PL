@@ -1,0 +1,197 @@
+{% extends 'Blog/base_blog.html' %}
+{% load static %}
+
+{% block doc_title %}
+    Space Share - Settings
+{% endblock %}
+
+{% block doc_css %}
+    <link rel="stylesheet" href="{% static 'Blog/css/settings.css' %}">
+{% endblock %}
+
+{% block blog_content %}
+    <div class="bg-settings"></div>
+    <div class="container-fluid position-absolute top-0 start-0 text-center mt-5">
+        <div class="row justify-content-center mt-4">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-5 col-xl-4 col-xxl-3 my-2">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-bg-primary">
+                        Email
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="row gx-2">
+                                <div class="col-md-12">
+                                    <div class="mb-2">
+                                        {% for form_item in form_changeemail %}
+                                            {{ form_item }}
+                                            <span class="text-start">{{ form_item.errors }}</span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="d-grid">
+                                        <button type="submit" name="change_email" class="btn btn-success">
+                                            Save
+                                        </button>
+                                    </div>
+                                    {% if form_changeemail_success %}
+                                        <div class="mt-2">
+                                            <p class="text-success fw-bold mb-0">Email has been changed successfully.</p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-10 col-md-8 col-lg-5 col-xl-4 col-xxl-3 my-2">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-bg-primary">
+                        Password
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="row gx-2">
+                                <div class="col-md-12">
+                                    <div class="mb-2">
+                                        {% for form_item in form_changepassword %}
+                                            {{ form_item }}
+                                            <span class="text-start">{{ form_item.errors }}</span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="d-grid">
+                                        <button type="submit" name="change_password" class="btn btn-success">
+                                            Save
+                                        </button>
+                                    </div>
+                                    {% if form_changepassword_success %}
+                                        <div class="mt-2">
+                                            <p class="text-success fw-bold mb-0">Password has been changed successfully.</p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-5 col-xl-4 col-xxl-3 my-2">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-bg-primary">
+                        Image
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row gx-2">
+                                <div class="col-md-12">
+                                    <div class="mb-2">
+                                        {% for form_item in form_changeimage %}
+                                            {{ form_item }}
+                                            <span class="text-start">{{ form_item.errors }}</span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="d-grid">
+                                        <button type="submit" name="change_image" class="btn btn-success">
+                                            Save
+                                        </button>
+                                    </div>
+                                    {% if form_changeimage_success %}
+                                        <div class="mt-2">
+                                            <p class="text-success fw-bold mb-0">Image has been changed successfully.</p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-10 col-md-8 col-lg-5 col-xl-4 col-xxl-3 my-2">
+                <div class="card shadow">
+                    <div class="card-header bg-danger text-bg-danger">
+                        Delete Account
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="row gx-2">
+                                <div class="col-md-12">
+                                    <div class="mb-2">
+                                        {% for form_item in form_deleteaccount %}
+                                            {{ form_item }}
+                                            <span class="text-start">{{ form_item.errors }}</span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="d-grid">
+                                        <button type="submit" name="delete_account" class="btn btn-danger">
+                                            Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-10 col-xl-8 col-xxl-6 my-2">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-bg-primary">
+                        Description
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="row gx-2">
+                                <div class="col-md-12">
+                                    <div class="mb-2">
+                                        {% for form_item in form_changedescription %}
+                                            {{ form_item }}
+                                            <span class="text-start">{{ form_item.errors }}</span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="d-grid">
+                                        <button type="submit" name="change_description" class="btn btn-success">
+                                            Save
+                                        </button>
+                                    </div>
+                                    {% if form_changedescription_success %}
+                                        <div class="mt-2">
+                                            <p class="text-success fw-bold mb-0">Profile description has been changed successfully.</p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-10 col-xl-8 col-xxl-6 mt-2 mb-5">
+                <a href="{% url 'user' user_slug %}" class="btn btn-primary w-100">See your profile...</a>
+            </div>
+        </div>
+        <div class="my-5"></div>
+    </div>
+{% endblock %}
+
+{% block doc_js %}
+    <script src="{% static 'Blog/js/textarea_tabs.js' %}"></script>
+{% endblock %}

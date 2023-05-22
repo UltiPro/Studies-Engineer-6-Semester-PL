@@ -1,0 +1,132 @@
+{% extends 'Blog/base_blog.html' %}
+{% load static %}
+
+{% block doc_title %}
+    Space Share - Post by {{ post.author.name }} {{ post.author.surname }}
+{% endblock %}
+
+{% block doc_css %}
+    <link rel="stylesheet" href="{% static 'Blog/css/modal_image.css' %}">
+    <style>
+        .banner-holder {
+            background-image: url("{% static 'Blog/images/post.jpg' %}");
+            background-position: center;
+        }
+    </style>
+{% endblock %}
+
+{% block blog_content %}
+    <header class="banner-holder py-5 mb-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="banner-content text-center text-white my-5 py-5">
+                        <h1 class="fw-bolder">{{ post.author.name }} {{ post.author.surname }}</h1>
+                        <p class="lead">{{ post.title }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="py-3 mb-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="content-holder">
+                        <div class="post-content mb-3">
+                            <h1>{{ post.title }}</h1>
+                            <p><span>&emsp;</span>{{ post.content|safe|linebreaksbr }}</p>
+                            <p class="text-end fw-bold">{{ post.date }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <img src="{{ post.image.url }}" alt="Author's image" id="modal-image-click" class="img-fluid rounded border border-2 border-secondary">
+                    </div>
+                    <a href="{% url 'author' post.author.slug %}" class="text-decoration-none">
+                        <div class="card">
+                            <div class="card-header text-bg-primary text-center">
+                                {{ post.author.name }} {{post.author.surname}}
+                            </div>
+                            <div class="card-body p-0">
+                                <img src="{{ post.author.image.url }}" alt="Author" class="w-100 h-100 rounded-bottom">
+                            </div>
+                        </div>
+                    </a>
+                    <ul class="list-group mt-3">
+                        <li class="list-group-item active text-center">Post Categories</li>
+                        {% for tag in post.tags.all %}
+                            <a href="{% url 'posts_by_tag' tag.tag %}" class="text-decoration-none text-dark">
+                                <li class="list-group-item list-group-item-action">
+                                    {{ tag.tag }}
+                                </li>
+                            </a>
+                        {% endfor %}
+                      </ul>
+                </div>
+            </div>
+            <div class="row" id="scroll-auto-target">
+                <div class="col-md-8">
+                    <div class="comment-form my-3 my-md-0">
+                        <div class="card">
+                            <div class="card-body">
+                                {% if request.session.nickname %}
+                                    <h3 class="fs-6 mb-3 fw-bolder">Post your thoughts</h3>
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        <div class="row gx-2">
+                                            <div class="col-md-12">
+                                                <div class="mb-2 shadow rounded">
+                                                    {{ form.content }}
+                                                </div>
+                                                {{ form.content.errors }}
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="d-grid shadow rounded">
+                                                    <button type="submit" class="btn btn-sm btn-success">
+                                                        Submit comment
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                {% else %}
+                                    <a href="{% url 'login' %}" class="btn btn-primary w-100">Login to post comments</a>
+                                {% endif %}
+                                <h3 class="fs-6 mt-3 mb-3 fw-bolder">Comments</h3>
+                                {% for comment in comments %}
+                                    <div class="card w-100 {% if comment == comments.last %} mb-0 {% else %} mb-3 {% endif %} shadow">
+                                        <div class="card-body text-secondary fw-bold m-0 pb-0">
+                                            <div class="row">
+                                                <div class="col-10">{{ comment.content|safe|linebreaksbr }}</div>
+                                                    <div class="col-2 pb-2">
+                                                        <a href="{% url 'user' comment.user.slug %}">
+                                                            <img src="{{ comment.user.image.url }}" alt="User's image" class="img-fluid border border-secondary rounded">
+                                                        </a>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer bg-secondary text-bg-secondary">
+                                            <div class="row">
+                                                <div class="col-6">{{ comment.user.nickname }}</div>
+                                                <div class="col-6 text-end">{{ comment.date }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% include "Blog/includes/modal_image.html" %}
+{% endblock %}
+
+{% block doc_js %}
+    <script src="{% static 'Blog/js/modal_image.js' %}"></script>
+    <script src="{% static 'Blog/js/textarea_tabs.js' %}"></script>
+    <script src="{% static 'Blog/js/post.js' %}"></script>
+{% endblock %}
