@@ -1,0 +1,82 @@
+﻿<Window x:Class="zad3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:zad3"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    
+        <DockPanel>
+            <Grid DockPanel.Dock="Top" Margin="5"   >
+                <Grid.ColumnDefinitions  >
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="0" VerticalAlignment="Center" Grid.Row="0" >Nakład:</Label>
+            <TextBox x:Name="myAmount" PreviewTextInput="NumberValidationTextBox" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Padding="10 5" Margin="5 0" TextChanged="TextBox_TextChanged"></TextBox>
+                
+                <Label Grid.Column="0" VerticalAlignment="Center" Grid.Row="1" Padding="0 10" >Format:</Label>
+                <Slider x:Name="mySlider" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="5 10"  Ticks="0,1,2,3,4,5" Maximum="5"  IsSnapToTickEnabled="True" TickPlacement="BottomRight" ValueChanged="onSliderChange" />
+                <Label x:Name="myFormatLabel"  Grid.Column="3" Grid.Row="1" Width="150" Padding="20 10"  >label</Label>
+
+                <CheckBox Name="myColorPaper" VerticalAlignment="Center" Grid.Row="2" Grid.ColumnSpan="2" Padding="20 0" Checked="Color_Checked" Unchecked="Color_Unchecked">Kolorowy papier - cena +50%</CheckBox>
+                <ComboBox Name="myComboBox" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" IsEnabled="False" SelectionChanged="ComboBox_Changed">
+                    <ComboBoxItem>Żółty</ComboBoxItem>
+                    <ComboBoxItem>Zielony</ComboBoxItem>
+                    <ComboBoxItem>Niebieski</ComboBoxItem>
+                </ComboBox>
+            </Grid>
+        <Grid DockPanel.Dock="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <GroupBox Grid.Column="0" Header="Gramatura" Margin="5">
+                    <StackPanel>
+                        <RadioButton x:Name="myFirstGrammage" Margin="3"  Checked="Gramage80_Checked"  >80 g/m</RadioButton>
+                        <RadioButton Margin="3" Checked="Gramage120_Checked">120 g/m - cena x 2</RadioButton>
+                        <RadioButton Margin="3" Checked="Gramage200_Checked">200 g/m - cena x 2.5</RadioButton>
+                        <RadioButton Margin="3" Checked="Gramage240_Checked">240 g/m - cena x 3</RadioButton>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Grid.Column="1" Header="Opcje wydruku" Margin="5">
+                    <StackPanel>
+                    <CheckBox x:Name="myPrint1" Margin="3" Checked="PrintColor_Checked" Unchecked="PrintColor_Unchecked">druk w kolorze - cena +30%</CheckBox>
+                    <CheckBox x:Name="myPrint2" Margin="3" Checked="Print2_Checked" Unchecked="Print2_Unchecked">druk dwustronnny - cena +50%</CheckBox>
+                    <CheckBox x:Name="myPrint3" Margin="3" Checked="PrintUV_Checked" Unchecked="PrintUV_Unchecked">lakier UV- cena +20%</CheckBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Grid.Column="2" Header="Termin realizacji" Margin="5">
+                    <StackPanel>
+                        <RadioButton x:Name="myDeliverStandard" IsChecked="True" Margin="3">Standard</RadioButton>
+                    <RadioButton Margin="3" Checked="ExpressDelivery_Checked" Unchecked="ExpressDelivery_Unchecked">Express - cena +15zł</RadioButton>
+                    </StackPanel>
+                </GroupBox>
+            </Grid>
+        <Grid Margin="0 5" DockPanel.Dock="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Label FontWeight="Bold" Grid.Row="0" Margin="0 0 28 0">Podsumowanie zamówienia:</Label>
+            <TextBox x:Name="SummaryText" IsReadOnly="True" Grid.Row="1"   Padding="10 5"></TextBox>
+            <StackPanel Grid.Row="2"  Orientation="Horizontal" HorizontalAlignment="Right" >
+                <Button  Padding="20 5" Margin=" 5" Click="CloseWindow">Anuluj</Button>
+                <Button  Padding="20 5" Margin=" 5" Click="Reset">Ok</Button>
+            </StackPanel>
+        </Grid>
+
+
+    </DockPanel>
+    
+</Window>
