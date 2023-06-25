@@ -1,0 +1,54 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="SliderThumbStyle" TargetType="Thumb">
+        <Setter Property="Height" Value="16" />
+        <Setter Property="Width" Value="16" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Thumb">
+                    <Ellipse Name="Ellipse" Stroke="{DynamicResource BorderColor1}" 
+                             StrokeThickness="2" Fill="{DynamicResource BackgroundColor3}" />
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Ellipse" Property="Fill" Value="{DynamicResource BackgroundColor2}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Slider" x:Key="AppSlider">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Slider">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Row="1" Grid.Column="1"
+                                BorderBrush="{DynamicResource BorderColor1}" BorderThickness="1"
+                                Padding="2" Background="{DynamicResource WhiteSpecial}"
+                                Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"
+                                HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                        <Track Grid.Row="1" Grid.Column="1" Name="PART_Track"
+                               Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"
+                               HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                            <Track.Thumb>
+                                <Thumb Style="{StaticResource SliderThumbStyle}" />
+                            </Track.Thumb>
+                        </Track>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

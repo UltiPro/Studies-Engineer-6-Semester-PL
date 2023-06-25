@@ -1,0 +1,38 @@
+﻿<Application x:Class="MusicVibes.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MusicVibes"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="BackgroundColor1">#e0b1cb</SolidColorBrush>
+            <SolidColorBrush x:Key="BackgroundColor2">#be95c4</SolidColorBrush>
+            <SolidColorBrush x:Key="BackgroundColor3">#9f86c0</SolidColorBrush>
+            <SolidColorBrush x:Key="BorderColor1">#5e548e</SolidColorBrush>
+            <SolidColorBrush x:Key="FontColor1">#231942</SolidColorBrush>
+            <SolidColorBrush x:Key="FontColor2">#f72585</SolidColorBrush>
+            <SolidColorBrush x:Key="WhiteSpecial">#ecf8f8</SolidColorBrush>
+            <SolidColorBrush x:Key="RedSpecial">#8b0404</SolidColorBrush>
+            <SolidColorBrush x:Key="RandomColor1">#FBD1B1</SolidColorBrush>
+            <SolidColorBrush x:Key="RandomColor2">#FFEDE1</SolidColorBrush>
+            <Style x:Key="TextBlockApp" TargetType="TextBlock">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="TextAlignment" Value="Center"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+            </Style>
+            <Style x:Key="PlayerControlImage" TargetType="Image">
+                <Setter Property="Width" Value="32"/>
+                <Setter Property="Height" Value="32"/>
+            </Style>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/MenuButtonTheme.xaml" />
+                <ResourceDictionary Source="Themes/CloseButtonTheme.xaml" />
+                <ResourceDictionary Source="Themes/ControlButtonTheme.xaml" />
+                <ResourceDictionary Source="Themes/PlaylistButtonTheme.xaml" />
+                <ResourceDictionary Source="Themes/AppSliderTheme.xaml" />
+                <ResourceDictionary Source="Themes/SearchBoxTheme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

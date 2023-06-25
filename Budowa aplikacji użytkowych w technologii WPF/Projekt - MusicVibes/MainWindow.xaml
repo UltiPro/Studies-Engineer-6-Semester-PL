@@ -1,0 +1,45 @@
+﻿<Window x:Class="MusicVibes.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:language="clr-namespace:MusicVibes.Properties.Langs"
+        Height="600" Width="1050" WindowStartupLocation="CenterScreen" WindowStyle="None" 
+        ResizeMode="NoResize" AllowsTransparency="True" Background="Transparent">
+    <Border CornerRadius="40" MouseDown="App_MouseDown">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="190"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+            
+            <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" CornerRadius="35,0,0,35" Background="{DynamicResource BackgroundColor1}">
+                <DockPanel Margin="0,35,0,35">
+                    <StackPanel DockPanel.Dock="Top">
+                        <Image Source="pack://application:,,,/Images/Logo.png" Width="96"/>
+                        <Label HorizontalContentAlignment="Center" FontSize="24" FontWeight="Bold" Foreground="{DynamicResource FontColor1}" Margin="0,-5,0,0">Music Vibes</Label>
+                    </StackPanel>
+                    <StackPanel DockPanel.Dock="Bottom" Margin="15,0,15,0">
+                        <RadioButton Content="{x:Static language:Lang.Quit}" Style="{StaticResource CloseButtonTheme}" Click="QuitButton_Click"/>
+                    </StackPanel>
+                    <StackPanel DockPanel.Dock="Bottom" Margin="15,15,15,0">
+                        <RadioButton Content="{x:Static language:Lang.Main}" Style="{StaticResource MenuButtonTheme}" Click="MainButton_Click"/>
+                        <RadioButton Content="{x:Static language:Lang.Open_Folder}" Style="{StaticResource MenuButtonTheme}" Click="OpenFolderButton_Click"/>
+                        <RadioButton Content="{x:Static language:Lang.Playlists}" Style="{StaticResource MenuButtonTheme}" Click="PlaylistsButton_Click"/>
+                        <RadioButton Content="{x:Static language:Lang.Settings}" Style="{StaticResource MenuButtonTheme}" Click="SettingsButton_Click"/>
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+
+            <Border Grid.Column="1" Grid.Row="0" CornerRadius="0,35,0,0" Background="{DynamicResource BackgroundColor1}"/>
+
+            <Frame Grid.Column="1" Grid.Row="1" Name="MainFrame" NavigationUIVisibility="Hidden" BorderBrush="{DynamicResource BorderColor1}" BorderThickness="1,1,0,1"/>
+
+            <Border Grid.Column="1" Grid.Row="2" CornerRadius="0,0,35,0" Background="{DynamicResource BackgroundColor1}"/>
+        </Grid>
+    </Border>
+</Window>
