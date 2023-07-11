@@ -23,7 +23,6 @@ namespace zad3.Properties
     internal class Resources
     {
         private static global::System.Resources.ResourceManager resourceMan;
-
         private static global::System.Globalization.CultureInfo resourceCulture;
 
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
